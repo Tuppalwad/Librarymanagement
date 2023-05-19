@@ -172,6 +172,17 @@ app.post("/getuserbook", async (req, res) => {
   }
 });
 
+// search book in  book api
+app.post("/search-books", (req, res) => {
+  const searchTerm = req.body.searchTerm.toLowerCase();
+  console.log(searchTerm);
+  const searchResults = book.filter((book) => {
+    book.BookName.toLowerCase().includes(searchTerm) ||
+      book.AuthorName.toLowerCase().includes(searchTerm);
+  });
+  return res.status(200).json({ books: searchResults, message: "success" });
+});
+
 mongoose
   .connect("mongodb://127.0.0.1:27017", {
     useNewUrlParser: true,
