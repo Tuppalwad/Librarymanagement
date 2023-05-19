@@ -24,7 +24,6 @@ function AdminDashbord() {
       fetch("http://localhost:3000/books")
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           setBooks(res.books);
           setName(localStorage.getItem("type"));
         });
@@ -40,7 +39,6 @@ function AdminDashbord() {
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           if (res.error) {
             swal({
               title: "Error",

@@ -15,7 +15,6 @@ function EditInfo() {
       fetch(`http://localhost:3000/book/${id}`)
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           setName(res.books.BookName);
           setAuthor(res.books.AuthorName);
           setType(res.books.type);

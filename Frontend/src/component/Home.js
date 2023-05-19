@@ -8,14 +8,12 @@ function Home() {
       fetch("http://localhost:3000/books")
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           setBooks(res.books);
         });
     } catch (error) {
       console.log(error);
     }
   }, []);
-  console.log(books);
 
   const UserBookAdd = (data, id) => {
     if (localStorage.getItem("token") == null) {

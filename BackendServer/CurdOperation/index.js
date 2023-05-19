@@ -140,6 +140,7 @@ app.get("/book/:id", async (req, res) => {
   }
 });
 
+// create collectin of book in mongodb of user  when user request for book
 app.post("/userbook", async (req, res) => {
   try {
     console.log(req.body);
@@ -154,16 +155,23 @@ app.post("/userbook", async (req, res) => {
   }
 });
 
+// get user book by id
+
 app.post("/getuserbook", async (req, res) => {
   try {
     const userbooks = await userbook.find();
+    // console.log(userbooks);
     const list = [];
+    console.log(req.body.id);
+    console.log(userbooks[0].id);
     for (let i = 0; i < userbooks.length; i++) {
       if (userbooks[i].id == req.body.id) {
         list.push(userbooks[i]);
       }
     }
 
+    console.log("teste");
+    console.log(list);
     return res.status(200).json({ userbooks: list, message: "success" });
   } catch (error) {
     console.log(error);
