@@ -88,17 +88,17 @@ function Home() {
 
       <div className="flex my-12 justify-center">
         <div className="w-full sm:w-11/12 lg:w-3/4">
-          <div className=" flex my-12 justify-start items-center">
+          <div className=" flex my-12 justify-center md:justify-start   items-center     ">
             <div className="w-1/4">
               <input
                 type="text"
-                className="border border-gray-300 rounded px-4 py-2 w-full"
+                className="border border-gray-300 rounded px-4 py-2 w-[160px]  md:w-full"
                 placeholder="Search books"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <div className="ml-3">
+            <div className="ml-24 md:ml-3">
               <button
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                 onClick={handleSearch}
