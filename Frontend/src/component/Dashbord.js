@@ -54,8 +54,6 @@ function Dashbord() {
                       <th className="px-4 py-2 bg-gray-200">Author</th>
                       <th className="px-4 py-2 bg-gray-200">Type</th>
                       <th className="px-4 py-2 bg-gray-200">Price</th>
-
-                      <th className="px-4 py-2 bg-gray-200">Request</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -66,7 +64,7 @@ function Dashbord() {
                         <td className="px-2 py-2 sm:px-4">{book.type}</td>
                         <td className="px-2 py-2 sm:px-4">{book.Price}</td>
 
-                        <td className="px-2 py-2 sm:px-4">
+                        {/* <td className="px-2 py-2 sm:px-4">
                           <button
                             className="bg-green-500  -mr-12 hover:bg-green-700 text-white font-bold py-1 px-2 rounded text-sm sm:py-2 sm:px-4"
                             onClick={() => {
@@ -77,7 +75,7 @@ function Dashbord() {
                           >
                             Request
                           </button>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                   </tbody>

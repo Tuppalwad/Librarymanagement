@@ -20,7 +20,6 @@ app.post("/register", async (req, res) => {
     console.log(req.body);
     const user = await User.create(req.body);
     console.log(user);
-    // how to encreatp password in nodejs
 
     return res
       .status(201)
@@ -143,8 +142,15 @@ app.get("/book/:id", async (req, res) => {
 app.post("/userbook", async (req, res) => {
   try {
     console.log(req.body);
-    const userbooks = await userbook.create(req.body);
 
+    const books = await userbook.find();
+    console.log(books);
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].id == req.body.id) {
+        return res.status(200).json({ message: "Book already exist" });
+      }
+    }
+    const userbooks = await userbook.create(req.body);
     return res
       .status(201)
       .json({ userbooks: userbooks, message: "Book created", error: "" });
@@ -173,14 +179,18 @@ app.post("/getuserbook", async (req, res) => {
 });
 
 // search book in  book api
-app.post("/search-books", (req, res) => {
-  const searchTerm = req.body.searchTerm.toLowerCase();
-  console.log(searchTerm);
-  const searchResults = book.filter((book) => {
-    book.BookName.toLowerCase().includes(searchTerm) ||
-      book.AuthorName.toLowerCase().includes(searchTerm);
-  });
-  return res.status(200).json({ books: searchResults, message: "success" });
+app.post("/search-books", async (req, res) => {
+  // const searchTerm = req.body.item.toLowerCase();
+  // console.log(searchTerm);
+  const data = await book.find();
+  const bookname = [];
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].BookName.toLowerCase().includes(req.body.item.toLowerCase())) {
+      bookname.push(data[i]);
+    }
+  }
+
+  return res.status(200).json({ books: bookname, message: "success" });
 });
 
 mongoose

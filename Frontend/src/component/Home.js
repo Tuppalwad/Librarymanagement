@@ -5,14 +5,7 @@ import swal from "sweetalert";
 function Home() {
   const [books, setBooks] = React.useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([
-    {
-      BookName: "",
-      AuthorName: "",
-      type: "",
-      Price: "",
-    },
-  ]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     try {
@@ -34,11 +27,11 @@ function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ searchTerm }),
+        body: JSON.stringify({ item: searchTerm }),
       });
 
       const data = await response.json();
-      setSearchResults(data);
+      setSearchResults(data.books);
     } catch (error) {
       console.error("Error searching books:", error);
     }
